@@ -1,0 +1,25 @@
+## .NET build output
+bin/
+obj/
+
+## Visual Studio
+.vs/
+*.user
+*.suo
+
+## JetBrains Rider
+.idea/
+*.sln.iml
+
+## Visual Studio Code
+.vscode/
+
+## Test results and coverage
+TestResults/
+coverage/
+*.coverage
+*.coveragexml
+
+## Operating system files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,26 @@
+services:
+  media-tools-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_HTTP_PORTS: 8080
+      MediaTools__MediaRoot: /media
+      MediaTools__FfprobePath: /usr/bin/ffprobe
+      MediaTools__FfmpegPath: /usr/bin/ffmpeg
+      MediaTools__ProbeTimeoutSeconds: 30
+      MediaTools__ExtractTimeoutSeconds: 120
+    volumes:
+      - type: bind
+        source: ${MEDIA_ROOT_HOST:?MEDIA_ROOT_HOST is required}
+        target: /media
+    ports:
+      - "127.0.0.1:${MEDIA_TOOLS_HOST_PORT:-5050}:8080"
+    networks:
+      - media-tools-network
+
+networks:
+  media-tools-network:
+    name: media-tools-network
